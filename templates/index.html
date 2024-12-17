@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+</head>
+<body>
+    <h1>Download YouTube Video</h1>
+    <form method="POST">
+        <label for="video_url">Enter Video URL:</label>
+        <input type="text" name="video_url" id="video_url" required>
+        <button type="submit">Download</button>
+    </form>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if video_path %}
+        <h2>Downloaded Video:</h2>
+        <video width="640" height="480" controls>
+            <source src="{{ url_for('serve_video', filename=video_path) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    {% endif %}
+</body>
+</html>
